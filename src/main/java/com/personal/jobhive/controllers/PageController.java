@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.personal.jobhive.entities.User;
 import com.personal.jobhive.forms.UserForm;
+import com.personal.jobhive.helpers.Message;
+import com.personal.jobhive.helpers.MessageType;
 import com.personal.jobhive.services.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -66,9 +70,8 @@ public class PageController {
     // processing register
 
     @RequestMapping(value = "/do-register", method = RequestMethod.POST)
-    public String processRegister(@ModelAttribute UserForm userForm) {
+    public String processRegister(@ModelAttribute UserForm userForm, HttpSession session) {        
         System.out.println("Processing registration");
-
         User user = new User();
         user.setName(userForm.getName());
         user.setEmail(userForm.getEmail());
@@ -78,7 +81,8 @@ public class PageController {
         User savedUser = userService.saveUser(user);
 
         System.out.println("user saved :");
-
+        Message message = Message.builder().content("Registration Successful").type(MessageType.green).build(); 
+        session.setAttribute("message", message);
         return "redirect:/register";
     }
 
