@@ -24,6 +24,11 @@ public class PageController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/home";
+    }
+
     @GetMapping("/home")
     public String homePage(Model model) {
         model.addAttribute("name", "Pranshu Pandey");

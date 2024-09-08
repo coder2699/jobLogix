@@ -1,10 +1,8 @@
 package com.personal.jobhive.forms;
 
-
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,7 +28,7 @@ public class UserForm {
     @NotBlank(message = "Password is required")
     @Size(min = 6, message = "Minimum 6 characters are required")
     private String password;
-    
+
     @NotBlank(message = "About is required")    
     private String about;
 }
