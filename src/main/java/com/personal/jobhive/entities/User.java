@@ -45,7 +45,7 @@ public class User implements UserDetails{
     private String profilePic;
     // information
     @Getter(value = AccessLevel.NONE)
-    private boolean enabled = false;
+    private boolean enabled = true;
     private boolean emailVerified = false;
 
     // SELF, GOOGLE, FACEBOOK, TWITTER, LINKEDIN, GITHUB
