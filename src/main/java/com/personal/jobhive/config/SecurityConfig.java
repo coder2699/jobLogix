@@ -3,41 +3,27 @@ package com.personal.jobhive.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import com.personal.jobhive.services.impl.SecurityCustomUserDetailService;
 
 @Configuration
 public class SecurityConfig {
-    // create user  and login using java code with in-memory service
-    /*
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User
-        .withDefaultPasswordEncoder()
-        .username("admin")
-        .password("admin")
-        .roles("ADMIN","USER")
-        .build();
-
-        var inMemoryUserDetailsManager = new InMemoryUserDetailsManager(user);
-        return inMemoryUserDetailsManager;
-    }
-    */
+    @Autowired
+    private SecurityCustomUserDetailService userDetailService;
 
     @Autowired
-    private SecurityCustomUserDetailService securityCustomDetailService;
-
+    private OAuthAuthenicationSuccessHandler handler;
+    
+    // configuraiton of authentication providerfor spring security
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(securityCustomDetailService);
+        daoAuthenticationProvider.setUserDetailsService(userDetailService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
     }
@@ -56,8 +42,6 @@ public class SecurityConfig {
         // httpSecurity.formLogin(Customizer.withDefaults());
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.formLogin(formLogin -> {
-
-            //
             formLogin.loginPage("/login");
             formLogin.loginProcessingUrl("/authenticate");
             formLogin.defaultSuccessUrl("/user/dashboard");
@@ -70,6 +54,12 @@ public class SecurityConfig {
         httpSecurity.logout(logoutForm -> {
             logoutForm.logoutUrl("/do-logout");
             logoutForm.logoutSuccessUrl("/login?logout=true");
+        });
+
+        // oauth configurations
+        httpSecurity.oauth2Login(oauth -> {
+            oauth.loginPage("/login");
+            oauth.successHandler(handler);
         });
         return httpSecurity.build();
     }
