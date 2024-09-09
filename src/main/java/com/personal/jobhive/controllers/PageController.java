@@ -44,13 +44,6 @@ public class PageController {
         return "about";
     }
 
-    // services
-    @GetMapping("/services")
-    public String servicesPage() {
-        System.out.println("services page loading");
-        return "services";
-    }
-
     // job
     @GetMapping("/job")
     public String jobPage() {

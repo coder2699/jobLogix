@@ -20,12 +20,12 @@
 	<developers>
 		<developer/>
 	</developers>
-	<scm>
+	<jobhive>
 		<connection/>
 		<developerConnection/>
 		<tag/>
 		<url/>
-	</scm>
+	</jobhive>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
