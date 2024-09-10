@@ -36,21 +36,6 @@ public class PageController {
         return "home";
     }
 
-    // about route
-    @GetMapping("/about")
-    public String aboutPage(Model model) {
-        model.addAttribute("isLogin", true);
-        System.out.println("About page loading");
-        return "about";
-    }
-
-    // job
-    @GetMapping("/job")
-    public String jobPage() {
-        System.out.println("job page loading");
-        return "job";
-    }
-
     // login
     @GetMapping("/login")
     public String loginPage() {

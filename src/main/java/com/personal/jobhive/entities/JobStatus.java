@@ -1,5 +1,5 @@
 package com.personal.jobhive.entities;
 
 public enum JobStatus {
-    Applied, Shortlisted, OA, Interview, HR, Selected, Rejected
+    Apply, Applied, Shortlisted, OA, Interview, HR, Selected, Rejected, Waiting, Extended, Accepted, Denied
 }

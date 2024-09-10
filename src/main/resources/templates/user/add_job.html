@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <title>Add Job</title>
+</head>
+
+<body>
+    <div id="content">
+        <!-- sidebar -->
+
+        <!-- user is logged in : sidebar -->
+
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+        </div>
+
+        <div class="sm:pl-64 pt-20" style="height: 1000px">
+            <div class="grid grid-cols-12">
+                <div class="col-span-3"></div>
+                <div class="col-span-12 md:col-span-6">
+                    <div
+                        class="card block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        <div data-th-replace="message::messagebox"></div>
+
+                        <h1 class="text-2xl font-semibold">Add Job Details</h1>
+                        <p class="text-gray-500">
+                            Effortlessly Manage Your Career Moves
+                        </p>
+
+                        <form action="" class="mt-8" data-th-action="@{'/user/jobs/add'}" data-th-object="${jobForm}"
+                            method="post" enctype="multipart/form-data">
+                            <!-- company form -->
+                            <div class="mb-3">
+                                <label for="input-group-1"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                                    Name</label>
+                                <div class="relative mb-1">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-regular w-4 h-4 fa-building"></i>
+                                    </div>
+                                    <input data-th-field="*{company}" type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="company" />
+                                </div>
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('company')}"
+                                    data-th-errors="*{company}">
+                                    Invalid Name
+                                </p>
+                            </div>
+                            <!-- role -->
+                            <div class="mb-3">
+                                <label for="input-group-1"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job
+                                    Role</label>
+                                <div class="relative mb-1">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-solid w-4 h-4 fa-briefcase"></i>
+                                    </div>
+                                    <input data-th-field="*{jobRole}" type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="jobRole" />
+                                </div>
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('jobRole')}"
+                                    data-th-errors="*{jobRole}">
+                                    Invalid Job Role
+                                </p>
+                            </div>
+                            <!-- location -->
+                            <div class="mb-3">
+                                <label for="input-group-1"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                                <div class="relative mb-1">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-solid w-4 h-4 fa-location-dot"></i>
+                                    </div>
+                                    <input data-th-field="*{location}" type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="location" />
+                                </div>
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('location')}"
+                                    data-th-errors="*{location}">
+                                    Invalid Name
+                                </p>
+                            </div>
+                            <!-- platform -->
+                            <div class="mb-3">
+                                <label for="input-group-1"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Platform
+                                    Name</label>
+                                <div class="relative mb-1">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-solid w-4 h-4 fa-earth-americas"></i>
+                                    </div>
+                                    <input data-th-field="*{platform}" type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="platform" />
+                                </div>
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('platform')}"
+                                    data-th-errors="*{platform}">
+                                    Invalid Platform Name
+                                </p>
+                            </div>
+                            <!-- dates & status -->
+                            <div class="flex space-x-3 mb-3">
+                                <div class="w-full">
+                                    <!-- dates  -->
+                                    <div class="mb-3">
+                                        <label for="countries"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Applied On</label>
+                                        <div class="relative mb-6">
+                                            <div
+                                                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                    viewBox="0 0 20 20">
+                                                    <path
+                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                </svg>
+                                            </div>
+                                            <input id="datepicker-autohide" datepicker-format="yyyy-mm-dd" datepicker
+                                                datepicker-autohide data-th-field="*{appliedDate}" type="text"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Select date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="w-full"> -->
+                                    <!-- status  -->
+                                    <!-- <div class="mb-3"> -->
+                                        <!-- <div class="relative mb-6">
+
+                                            <form class="max-w-sm mx-auto">
+                                                <label for="status"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                                                    Status</label>
+                                                <select th:field="*{status}"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <option th:each="status : ${statusList}" th:value="${status}"
+                                                        th:text="${status}"></option>
+                                                </select>
+                                            </form>
+                                        </div> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                            </div>
+                            <!-- description -->
+                            <div class="mb-3">
+                                <label for="message"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job
+                                    Description</label>
+                                <textarea data-th-field="*{description}" rows="4"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Enter job description"></textarea>
+                            </div>
+                            <!-- links -->
+                            <div class="flex space-x-3 mb-3">
+                                <div class="w-full">
+                                    <!-- job  link  -->
+                                    <div class="mb-3">
+                                        <div class="relative mb-6">
+                                            <div
+                                                class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                                <i class="fa-solid w-4 h-4 fa-link"></i>
+                                            </div>
+                                            <input data-th-field="*{jobLink}"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Enter Job url" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <!-- cv  link  -->
+                                    <div class="mb-3">
+                                        <div class="relative mb-6">
+                                            <div
+                                                class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                                <i class="fa-regular w-4 h-4 fa-file"></i>
+                                            </div>
+                                            <input type="text" data-th-field="*{cvLink}"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Enter your CV link" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- company image field -->
+                            <div class="mb-3">
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    for="large_size">Company Logo</label>
+                                <input id="image_file_input"
+                                    class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    data-th-field="*{companyImage}" type="file" />
+
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('companyImage')}"
+                                    data-th-errors="*{companyImage}">
+                                    Invalid Image
+                                </p>
+
+                                <img class="max-h-52 mx-auto rounded-lg shadow m-3" src="" id="upload_image_preview"
+                                    alt="" />
+                            </div>
+
+                            <!-- starred checkbox -->
+
+                            <div class="flex items-center mb-3">
+                                <input data-th-field="*{starred}" type="checkbox"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                <label for="default-checkbox"
+                                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Add to starred
+                                    jobs ?</label>
+                            </div>
+
+                            <div class="button-container text-center">
+                                <button type="submit"
+                                    class="px-3 py-2 dark:bg-blue-600 hover:dark:bg-blue-700 rounded bg-black text-white">
+                                    Add Job
+                                </button>
+                                <button type="reset"
+                                    class="px-3 py-2 dark:bg-blue-600 hover:dark:bg-blue-700 rounded bg-black text-white">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script data-th-src="@{'/js/admin.js'}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script>
+        console.log("this is profile page");
+    </script>
+</body>
+
+</html>
