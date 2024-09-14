@@ -108,7 +108,9 @@
                                                 <i class="fa-solid w-6 h-6 fa-trash"></i>
                                             </a>
                                             <a href=""> <i class="fa-solid w-6 h-6 fa-pen"></i></a>
-                                            <a href=""> <i class="fa-solid fa-eye"></i></a>
+                                            <button th:onClick="loadJobdata([[${c.jobId}]])">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -148,12 +150,10 @@
                     </div>
                 </div>
             </div>
+            <div data-th-replace="~{ user/job_modals :: job}"></div>
         </div>
     </div>
-
-    <script>
-        console.log("this is profile page");
-    </script>
+    <script data-th-src="@{'/js/jobs.js'}"></script>
 </body>
 
 </html>
