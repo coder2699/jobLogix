@@ -71,15 +71,9 @@ public class JobController {
         }
 
         String username = Helper.getEmailOfLoggedInUser(authentication);
-        // form ---> contact
         User user = userService.getUserByEmail(username);
-
-        // 2 process the contact picture
-
         // image process
-
         // uplod feature code
-
         String filename = UUID.randomUUID().toString();
 
         String fileURL = imageService.uploadImage(jobForm.getCompanyImage(), filename);
@@ -101,7 +95,7 @@ public class JobController {
         jobService.save(job);
         System.out.println(jobForm);
 
-        // 3 set the contact picture url
+        // 3 set the job picture url
 
         // 4 `set message to be displayed on the view
 
@@ -124,9 +118,9 @@ public class JobController {
             Authentication authentication) {
         String username = Helper.getEmailOfLoggedInUser(authentication);
         User user = userService.getUserByEmail(username);
-        Page<Job> pageContact = jobService.getByUser(user, page, size, sortBy, direction);
+        Page<Job> pageJob = jobService.getByUser(user, page, size, sortBy, direction);
 
-        model.addAttribute("pageContact", pageContact);
+        model.addAttribute("pageJob", pageJob);
         model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
         model.addAttribute("jobSearchForm", new JobSearchForm());
         return "user/jobs";
@@ -166,7 +160,7 @@ public class JobController {
 
         model.addAttribute("jobSearchForm", jobSearchForm);
 
-        model.addAttribute("pageContact", pageJob);
+        model.addAttribute("pageJob", pageJob);
 
         model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
 

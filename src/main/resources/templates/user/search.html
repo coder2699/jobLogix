@@ -2,7 +2,7 @@
 <html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 
 <head>
-    <title>Search Contacts</title>
+    <title>Search Jobs</title>
 </head>
 
 <body>
@@ -18,10 +18,10 @@
         <div class="sm:pl-64 pt-20" style="height: 1000px">
             <div class="flex justify-center flex-col items-center">
                 <h1 class="text-5xl">Search Results</h1>
-                <p data-th-text="${pageContact.totalElements}+' results found'"></p>
+                <p data-th-text="${pageJob.totalElements}+' results found'"></p>
             </div>
 
-            <div class="contacts_container p-5">
+            <div class="jobs_container p-5">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <form data-th-object="${jobSearchForm}" action="" data-th-action="@{'/user/jobs/search'}">
                         <div
@@ -58,7 +58,7 @@
                             <label for="table-search" class="sr-only">Search</label>
                         </div>
                     </form>
-                    <table data-th-if="${pageContact.totalElements>0}"
+                    <table data-th-if="${pageJob.totalElements>0}"
                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead
                             class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -70,7 +70,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr data-th-object="${c}" data-th-each="c  : ${pageContact.getContent()}"
+                            <tr data-th-object="${c}" data-th-each="c  : ${pageJob.getContent()}"
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
                                     class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
@@ -116,25 +116,25 @@
                     </table>
 
                     <!-- pagination component  -->
-                    <div data-th-if="${pageContact.totalElements>0}"
+                    <div data-th-if="${pageJob.totalElements>0}"
                         class="pagination_container bg-white dark:bg-gray-800 p-5 text-center">
                         <nav aria-label="Page navigation example">
                             <ul class="inline-flex -space-x-px text-base h-10">
-                                <li data-th-unless="${pageContact.first}">
-                                    <a data-th-href="@{'/user/jobs?size='+${pageSize}+'&page=' + ${pageContact.number-1}}"
+                                <li data-th-unless="${pageJob.first}">
+                                    <a data-th-href="@{'/user/jobs?size='+${pageSize}+'&page=' + ${pageJob.number-1}}"
                                         href="#"
                                         class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
                                 </li>
-                                <li data-th-each="index :  ${#numbers.sequence(0,pageContact.totalPages-1)}">
+                                <li data-th-each="index :  ${#numbers.sequence(0,pageJob.totalPages-1)}">
                                     <a data-th-href="@{'/user/jobs?size='+${pageSize}+'&page='+${index}}" href="#"
-                                        data-th-classappend="${index==pageContact.number? 'bg-blue-50  dark:bg-gray-600' : 'bg-white dark:bg-gray-800'}"
+                                        data-th-classappend="${index==pageJob.number? 'bg-blue-50  dark:bg-gray-600' : 'bg-white dark:bg-gray-800'}"
                                         class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                         <span data-th-text="${index+1}"></span>
                                     </a>
                                 </li>
 
-                                <li data-th-unless="${pageContact.last}">
-                                    <a data-th-href="@{'/user/jobs?size='+${pageSize}+'&page=' + ${pageContact.number+1}}"
+                                <li data-th-unless="${pageJob.last}">
+                                    <a data-th-href="@{'/user/jobs?size='+${pageSize}+'&page=' + ${pageJob.number+1}}"
                                         href="#"
                                         class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
                                 </li>
@@ -142,7 +142,7 @@
                         </nav>
                     </div>
                     <h1 class="text-5xl text-center dark:bg-gray-800 dark:text-white bg-white p-4"
-                        data-th-if="${pageContact.totalElements<=0}">
+                        data-th-if="${pageJob.totalElements<=0}">
                         No result found
                     </h1>
                 </div>
