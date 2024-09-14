@@ -25,11 +25,14 @@ public interface JobService {
 
     void delete(String id);
 
-    // search job
-    List<Job> search(String name, String email, String phoneNumber);
-
     // get jobs by userId
     List<Job> getByUserId(String userId);
     
     Page<Job> getByUser(User user, int page, int size, String sortField, String sortDirection);
+    
+    Page<Job> searchByCompany(String companyKeyword, int size, int page, String sortBy, String order, User user);
+
+    Page<Job> searchByJobRole(String roleKeyword, int size, int page, String sortBy, String order, User user);
+
+    Page<Job> searchByLocation(String locationKeyword, int size, int page, String sortBy, String order, User user);
 }

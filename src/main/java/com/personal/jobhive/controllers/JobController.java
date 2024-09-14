@@ -18,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import com.personal.jobhive.entities.Job;
 import com.personal.jobhive.entities.User;
 import com.personal.jobhive.forms.JobForm;
+import com.personal.jobhive.forms.JobSearchForm;
 import com.personal.jobhive.helpers.AppConstants;
 import com.personal.jobhive.helpers.Helper;
 import com.personal.jobhive.helpers.Message;
@@ -53,7 +54,7 @@ public class JobController {
     }
 
 @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String saveContact(@Valid @ModelAttribute JobForm jobForm, BindingResult result,
+    public String saveJob(@Valid @ModelAttribute JobForm jobForm, BindingResult result,
             Authentication authentication, HttpSession session) {
 
         // process the form data
@@ -127,7 +128,48 @@ public class JobController {
 
         model.addAttribute("pageContact", pageContact);
         model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
-
+        model.addAttribute("jobSearchForm", new JobSearchForm());
         return "user/jobs";
+    }
+
+
+    // search handler
+
+    @RequestMapping("/search")
+    public String searchHandler(
+
+            @ModelAttribute JobSearchForm jobSearchForm,
+            @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "sortBy", defaultValue = "company") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            Model model,
+            Authentication authentication) {
+
+        logger.info("field {} keyword {}", jobSearchForm.getField(), jobSearchForm.getValue());
+
+        var user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
+
+        Page<Job> pageJob = null;
+        if (jobSearchForm.getField().equalsIgnoreCase("company")) {
+            pageJob = jobService.searchByCompany(jobSearchForm.getValue(), size, page, sortBy, direction,
+                    user);
+        } else if (jobSearchForm.getField().equalsIgnoreCase("jobRole")) {
+            pageJob = jobService.searchByJobRole(jobSearchForm.getValue(), size, page, sortBy, direction,
+                    user);
+        } else if (jobSearchForm.getField().equalsIgnoreCase("location")) {
+            pageJob = jobService.searchByLocation(jobSearchForm.getValue(), size, page, sortBy,
+                    direction, user);
+        }
+
+        logger.info("pageJob {}", pageJob);
+
+        model.addAttribute("jobSearchForm", jobSearchForm);
+
+        model.addAttribute("pageContact", pageJob);
+
+        model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
+
+        return "user/search";
     }
 }

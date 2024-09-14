@@ -54,12 +54,6 @@ public class JobServiceImpl implements JobService
     }
 
     @Override
-    public List<Job> search(String name, String email, String phoneNumber) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
-    }
-
-    @Override
     public List<Job> getByUserId(String userId) {
         return jobsRepo.findByUserId(userId);
     }
@@ -73,5 +67,30 @@ public class JobServiceImpl implements JobService
 
         return jobsRepo.findByUser(user, pageable);
 
+    }
+
+    @Override
+    public Page<Job> searchByCompany(String companyKeyword, int size, int page, String sortBy, String order, User user) {
+
+        Sort sort = order.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return jobsRepo.findByUserAndCompanyContaining(user, companyKeyword, pageable);
+    }
+
+    @Override
+    public Page<Job> searchByJobRole(String roleKeyword, int size, int page, String sortBy, String order,
+            User user) {
+        Sort sort = order.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return jobsRepo.findByUserAndJobRoleContaining(user, roleKeyword, pageable);
+    }
+
+    @Override
+    public Page<Job> searchByLocation(String locationKeyword, int size, int page, String sortBy,
+            String order, User user) {
+
+        Sort sort = order.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return jobsRepo.findByUserAndLocationContaining(user, locationKeyword, pageable);
     }
 }
