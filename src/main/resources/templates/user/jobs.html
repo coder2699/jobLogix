@@ -23,6 +23,7 @@
 
                 <div class="jobs_container p-5">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <div data-th-replace="~{message :: messagebox}"></div>
                         <form data-th-object="${jobSearchForm}" action="" data-th-action="@{'/user/jobs/search'}">
                             <div
                                 class="flex p-5 space-x-3 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
@@ -104,11 +105,14 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <div>
-                                            <!-- delete contact -->
+                                            <!-- delete -->
                                             <button th:onclick="deleteJob([[${c.jobId}]])">
                                                 <i class="fa-solid w-6 h-6 fa-trash"></i>
                                             </button>
-                                            <a href=""> <i class="fa-solid w-6 h-6 fa-pen"></i></a>
+                                            <!-- update -->
+                                            <a data-th-href="@{'/user/jobs/view/'+*{jobId}}">
+                                                <i class="fa-solid w-6 h-6 fa-pen"></i></a>
+                                            <!-- view -->
                                             <button th:onClick="loadJobdata([[${c.jobId}]])">
                                                 <i class="fa-solid fa-eye"></i>
                                             </button>

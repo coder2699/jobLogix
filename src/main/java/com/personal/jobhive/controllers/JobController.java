@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -180,5 +181,56 @@ public class JobController {
                         .type(MessageType.green)
                         .build());
         return "redirect:/user/jobs";
+    }
+
+    // update job form view
+    @GetMapping("/view/{jobId}")
+    public String updateJobFormView(@PathVariable("jobId") String jobId, Model model) {
+        var job = jobService.getById(jobId);
+        JobForm jobForm = new JobForm();
+        jobForm.setCompany(job.getCompany());
+        jobForm.setStarred(job.isStarred());
+        jobForm.setJobRole(job.getJobRole());
+        jobForm.setLocation(job.getLocation());
+        jobForm.setDescription(job.getDescription());
+        jobForm.setJobLink(job.getJobLink());
+        jobForm.setCvLink(job.getCvLink());
+        jobForm.setPlatform(job.getPlatform());
+        jobForm.setAppliedDate(job.getAppliedDate());
+
+        model.addAttribute("jobForm", jobForm);
+        model.addAttribute("jobId", jobId);
+
+        return "user/update_job_view";
+    }
+
+    @RequestMapping(value = "/update/{jobId}", method = RequestMethod.POST)
+    public String updateJob(@PathVariable("jobId") String jobId,
+            @Valid @ModelAttribute JobForm jobForm,
+            BindingResult bindingResult,
+            Model model) {
+
+        // update the job
+        if (bindingResult.hasErrors()) {
+            return "user/update_job_view";
+        }
+
+        var con = jobService.getById(jobId);
+        con.setJobId(jobId);
+        con.setCompany(jobForm.getCompany());
+        con.setStarred(jobForm.isStarred());
+        con.setJobRole(jobForm.getJobRole());
+        con.setLocation(jobForm.getLocation());
+        con.setDescription(jobForm.getDescription());
+        con.setJobLink(jobForm.getJobLink());
+        con.setCvLink(jobForm.getCvLink());
+        con.setPlatform(jobForm.getPlatform());
+
+        var updateCon = jobService.update(con);
+        logger.info("updated job {}", updateCon);
+
+        model.addAttribute("message", Message.builder().content("Jobs Updated !!").type(MessageType.green).build());
+
+        return "redirect:/user/jobs/view/" + jobId;
     }
 }

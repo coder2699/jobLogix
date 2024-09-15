@@ -102,11 +102,15 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div>
-                                        <a href="">
+                                        <!-- delete -->
+                                        <button th:onclick="deleteJob([[${c.jobId}]])">
                                             <i class="fa-solid w-6 h-6 fa-trash"></i>
-                                        </a>
-                                        <a href=""> <i class="fa-solid w-6 h-6 fa-pen"></i></a>
-                                        <button th:onclick="loadJobdata([[${c.id}]])">
+                                        </button>
+                                        <!-- update -->
+                                        <a data-th-href="@{'/user/jobs/view/'+*{jobId}}">
+                                            <i class="fa-solid w-6 h-6 fa-pen"></i></a>
+                                        <!-- view -->
+                                        <button th:onClick="loadJobdata([[${c.jobId}]])">
                                             <i class="fa-solid fa-eye"></i>
                                         </button>
                                     </div>

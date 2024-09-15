@@ -25,11 +25,14 @@ public class ImageServiceImpl implements ImageService {
 
         try {
             byte[] data = new byte[companyImage.getInputStream().available()];
-            companyImage.getInputStream().read(data);
+            if(data.length!=0) {
+                companyImage.getInputStream().read(data);
             cloudinary.uploader().upload(data, ObjectUtils.asMap(
                     "public_id", filename));
 
             return this.getUrlFromPublicId(filename);
+            }
+            return this.getUrlFromPublicId("6d38fe36-c6eb-40dc-8150-1e20042bcb62");
         } catch (IOException e) {
             e.printStackTrace();
             return null;

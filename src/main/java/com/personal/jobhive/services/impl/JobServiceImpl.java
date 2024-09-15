@@ -30,8 +30,20 @@ public class JobServiceImpl implements JobService
 
     @Override
     public Job update(Job job) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        var jobOld = jobsRepo.findById(job.getJobId())
+                .orElseThrow(() -> new ResourceNotFoundException("Job not found"));
+        jobOld.setCompany(job.getCompany());
+        jobOld.setStarred(job.isStarred());
+        jobOld.setJobRole(job.getJobRole());
+        jobOld.setLocation(job.getLocation());
+        jobOld.setDescription(job.getDescription());
+        jobOld.setJobLink(job.getJobLink());
+        jobOld.setCvLink(job.getCvLink());
+        jobOld.setPlatform(job.getPlatform());
+        jobOld.setAppliedDate(job.getAppliedDate());
+        jobOld.setCloudinaryImagePublicId(job.getCloudinaryImagePublicId());
+
+        return jobsRepo.save(jobOld);
     }
 
     @Override

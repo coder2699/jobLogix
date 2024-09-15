@@ -2,7 +2,7 @@
 <html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 
 <head>
-    <title>Add Job</title>
+    <title>Update Job</title>
 </head>
 
 <body>
@@ -21,15 +21,12 @@
                 <div class="col-span-12 md:col-span-6">
                     <div
                         class="card block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                        <div data-th-replace="message::messagebox"></div>
+                        <div data-th-replace="~{message :: messagebox}"></div>
 
-                        <h1 class="text-2xl font-semibold">Add Job Details</h1>
-                        <p class="text-gray-500">
-                            Effortlessly Manage Your Career Moves
-                        </p>
+                        <h1 class="text-2xl font-semibold">Update Job</h1>
 
-                        <form action="" class="mt-8" data-th-action="@{'/user/jobs/add'}" data-th-object="${jobForm}"
-                            method="post" enctype="multipart/form-data">
+                        <form class="mt-8" data-th-action="@{'/user/jobs/update/' + ${jobId}}"
+                            data-th-object="${jobForm}" method="post" enctype="multipart/form-data">
                             <!-- company form -->
                             <div class="mb-3">
                                 <label for="input-group-1"
@@ -125,7 +122,7 @@
                                             <input id="datepicker-autohide" datepicker-format="yyyy-mm-dd" datepicker
                                                 datepicker-autohide data-th-field="*{appliedDate}" type="text"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Select date">
+                                                placeholder="Select date"/>
                                         </div>
                                     </div>
                                 </div>
@@ -217,7 +214,7 @@
                             <div class="button-container text-center">
                                 <button type="submit"
                                     class="px-3 py-2 dark:bg-blue-600 hover:dark:bg-blue-700 rounded bg-black text-white">
-                                    Add Job
+                                    Update Job
                                 </button>
                                 <button type="reset"
                                     class="px-3 py-2 dark:bg-blue-600 hover:dark:bg-blue-700 rounded bg-black text-white">

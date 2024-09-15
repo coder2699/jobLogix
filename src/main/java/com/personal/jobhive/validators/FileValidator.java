@@ -11,13 +11,13 @@ public class FileValidator implements ConstraintValidator<ValidFile, MultipartFi
     @Override
     public boolean isValid(MultipartFile file, ConstraintValidatorContext context) {
 
-        if (file == null || file.isEmpty()) {
+        // if (file == null || file.isEmpty()) {
 
-            context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("File cannot be empty").addConstraintViolation();
-            return false;
+        //     context.disableDefaultConstraintViolation();
+        //     context.buildConstraintViolationWithTemplate("File cannot be empty").addConstraintViolation();
+        //     return false;
 
-        }
+        // }
 
         // file size
 
