@@ -1,4 +1,5 @@
 console.log("Jobs.js");
+const baseURL = "http://localhost:8080";
 const viewJobModal = document.getElementById("view_job_modal");
 
 // options with default values
@@ -10,8 +11,10 @@ const options = {
     onHide: () => {
         console.log("modal is hidden");
     },
-    onShow: () => {
-        console.log("modal is shown");
+    onShow: () => {    
+        setTimeout(() => {
+        jobModal.classList.add("scale-100");
+      }, 50);
     },
     onToggle: () => {
         console.log("modal has been toggled");
@@ -38,9 +41,7 @@ async function loadJobdata(id) {
     //function call to load data
     console.log('>id', id);
     try {
-        const data = await (
-            await fetch(`http://localhost:8080/api/jobs/${id}`)
-        ).json();
+        const data = await (await fetch(`${baseURL}/api/jobs/${id}`)).json();
         console.log('data->',data);
         document.querySelector("#job_role").innerHTML = data.jobRole;
         document.querySelector("#description").innerHTML = data.description;
@@ -50,4 +51,20 @@ async function loadJobdata(id) {
     } catch (error) {
         console.log("Error: ", error);
     }
+}
+
+// delete 
+async function deleteJob(id) {
+    Swal.fire({
+      title: "Do you want to delete the job application?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        const url = `${baseURL}/user/jobs/delete/` + id;
+        window.location.replace(url);
+      }
+    });
 }

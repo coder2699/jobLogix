@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -165,5 +166,19 @@ public class JobController {
         model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
 
         return "user/search";
+    }
+
+    // detete
+    @RequestMapping("/delete/{jobId}")
+    public String deleteJob(@PathVariable("jobId") String jobId, HttpSession session) {
+        jobService.delete(jobId);
+        logger.info("jobId {} deleted", jobId);
+
+        session.setAttribute("message",
+                Message.builder()
+                        .content("Job Application is Deleted successfully !! ")
+                        .type(MessageType.green)
+                        .build());
+        return "redirect:/user/jobs";
     }
 }
