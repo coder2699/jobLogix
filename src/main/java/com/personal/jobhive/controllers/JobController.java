@@ -208,7 +208,7 @@ public class JobController {
     public String updateJob(@PathVariable("jobId") String jobId,
             @Valid @ModelAttribute JobForm jobForm,
             BindingResult bindingResult,
-            Model model) {
+            Model model, HttpSession session) {
 
         // update the job
         if (bindingResult.hasErrors()) {
@@ -229,8 +229,12 @@ public class JobController {
         var updateCon = jobService.update(con);
         logger.info("updated job {}", updateCon);
 
-        model.addAttribute("message", Message.builder().content("Jobs Updated !!").type(MessageType.green).build());
-
+        // model.addAttribute("message", Message.builder().content("Jobs Updated !!").type(MessageType.green).build());
+        session.setAttribute("message",
+        Message.builder()
+                .content("Your Job Application is updated !!")
+                .type(MessageType.green)
+                .build());
         return "redirect:/user/jobs/view/" + jobId;
     }
 }
