@@ -27,7 +27,7 @@
                         <div
                             class="flex p-5 space-x-3 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
                             <div>
-                                <select data-th-field="*{field}" id="countries_disabled"
+                                <select data-th-field="*{field}" id="searchFields"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected value="">Select field</option>
                                     <option value="company">Company</option>
@@ -46,12 +46,12 @@
                                                 stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                         </svg>
                                     </div>
-                                    <input data-th-field="*{value}" type="text" id="table-search-users"
+                                    <input id="searchInput" data-th-field="*{value}" type="text"
                                         class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Search for users" />
+                                        placeholder="Search for users" disabled/>
                                 </div>
                             </div>
-                            <button type="submit" class="px-3 py-2 bg-gray-800 text-white rounded">
+                            <button id="searchButton" type="submit" class="px-3 py-2 bg-gray-800 text-white rounded">
                                 Search
                             </button>
                             <label for="table-search" class="sr-only">Search</label>
@@ -93,6 +93,8 @@
                                     <div class="flex items-center">
                                         <div data-th-if="*{starred}" class="h-2.5 w-2.5 rounded-full bg-green-500 me-2">
                                         </div>
+                                        <div data-th-unless="*{starred}"
+                                        class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>
                                         <a data-th-href="@{*{jobLink}}" target="_blank"><i
                                                 class="fa-solid w-6 h-6 fa-link"></i></a>
                                         <a data-th-href="@{*{cvLink}}" target="_blank">
@@ -156,6 +158,7 @@
     </div>
 
     <script data-th-src="@{'/js/jobs.js'}"></script>
+    <script data-th-src="@{'/js/disabled.js'}"></script>
 </body>
 
 </html>

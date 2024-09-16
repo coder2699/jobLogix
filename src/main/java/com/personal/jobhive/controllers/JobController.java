@@ -115,8 +115,8 @@ public class JobController {
     public String viewJobs(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
-            @RequestParam(value = "sortBy", defaultValue = "company") String sortBy,
-            @RequestParam(value = "direction", defaultValue = "asc") String direction, Model model,
+            @RequestParam(value = "sortBy", defaultValue = "starred") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "desc") String direction, Model model,
             Authentication authentication) {
         String username = Helper.getEmailOfLoggedInUser(authentication);
         User user = userService.getUserByEmail(username);
@@ -137,8 +137,8 @@ public class JobController {
             @ModelAttribute JobSearchForm jobSearchForm,
             @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
             @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "sortBy", defaultValue = "company") String sortBy,
-            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            @RequestParam(value = "sortBy", defaultValue = "starred") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "desc") String direction,
             Model model,
             Authentication authentication) {
 
@@ -156,6 +156,8 @@ public class JobController {
         } else if (jobSearchForm.getField().equalsIgnoreCase("location")) {
             pageJob = jobService.searchByLocation(jobSearchForm.getValue(), size, page, sortBy,
                     direction, user);
+        } else {
+            pageJob = jobService.getByUser(user, page, size, sortBy, direction);
         }
 
         logger.info("pageJob {}", pageJob);
@@ -225,6 +227,7 @@ public class JobController {
         con.setJobLink(jobForm.getJobLink());
         con.setCvLink(jobForm.getCvLink());
         con.setPlatform(jobForm.getPlatform());
+        // con.setAppliedDate(jobForm.getAppliedDate());
 
         var updateCon = jobService.update(con);
         logger.info("updated job {}", updateCon);

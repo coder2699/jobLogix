@@ -60,6 +60,8 @@ async function deleteJob(id) {
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Delete",
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#2563eb"
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
