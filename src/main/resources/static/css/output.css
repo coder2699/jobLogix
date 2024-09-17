@@ -2025,4 +2025,16 @@ video {
   .ml-auto {
     margin-left: auto;
   }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    z-index: 90;
+    width: 100%;
+  }
+  .content {
+    padding-top: 4rem; /* Adjust based on the height of your navbar */
+    display: grid;
+    scroll-behavior: smooth;
+  }
 }
