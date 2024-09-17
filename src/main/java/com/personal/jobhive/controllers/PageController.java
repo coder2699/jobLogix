@@ -18,6 +18,8 @@ import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class PageController {
@@ -70,7 +72,7 @@ public class PageController {
         user.setEmail(userForm.getEmail());
         user.setPassword(userForm.getPassword());
         user.setAbout(userForm.getAbout());
-        user.setProfilePic("https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg");
+        user.setProfilePic("https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1726602460~exp=1726606060~hmac=8b15513ce0a7fe94c7834d0966690c0d1f15a16b73e8f27668bad5a6d4c5ac64&w=1380");
         User savedUser = userService.saveUser(user);
         System.out.println("user saved :");
         Message message = Message.builder().content("Registration Successful").type(MessageType.green).build();
@@ -78,4 +80,10 @@ public class PageController {
         // redirectto login page
         return "redirect:/register";
     }
+
+    @GetMapping("/error")
+    public String error() {
+        return "error"; 
+    }
+    
 }

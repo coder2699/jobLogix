@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+    <style>
+        .back-home-btn {
+            background: linear-gradient(to right, #0052d4, #4364f7, #6fb1fc);
+            color: white;
+            border: none;
+            border-radius: 1rem;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .back-home-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        style="background-image: url('https://img.freepik.com/free-vector/internet-network-warning-404-error-page-file-found-web-page-internet-error-page-issue-found-network-404-error-present-by-man-sleep-display_1150-55450.jpg?t=st=1726604928~exp=1726608528~hmac=c5636a0093cdbcfe1aeabb83c3812117645810aedef4a49918f1bfb9e0b55ede&w=1800'); background-position: center; background-repeat: no-repeat; background-size: cover; width: 100%; height: 100vh; overflow: hidden;">
+        <button class="back-home-btn" th><a data-th-href="@{/home}" style="color:white ;text-decoration:none;">Go Back to Home</a></button>
+    </div>
+</body>
+
+</html>

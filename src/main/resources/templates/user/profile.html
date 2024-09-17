@@ -2,7 +2,7 @@
 <html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 
 <head>
-    <title data-th-text="${loggedInUser.name}+' |  JobLogix'">Profile Page</title>
+    <title data-th-text="${loggedInUser.name}+' |  SCM'">Profile Page</title>
 </head>
 
 <body>
@@ -16,19 +16,27 @@
         </div>
 
         <div class="sm:pl-64 pt-20" style="height: 1000px">
-            <div class="flex justify-center flex-col items-center">
-                <h1 class="text-5xl">Welcome to Profile page</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Consequatur, ratione!
-                </p>
+            <div class="flex items-center justify-center md:pt-32 flex-col">
+                <!--  profie card -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl w-full">
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-2xl font-semibold mb-2">Your Profile</h3>
+                        <br />
+                        <img data-th-src="@{${loggedInUser.profilePic}}" src="path/to/profilePic.jpg"
+                            alt="Profile Photo" class="w-44 h-44 rounded-full shadow-lg object-cover mb-4" />
+                        <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+                        <h2 class="text-xl font-semibold mb-2" data-th-text=${loggedInUser.name}>User Name</h2>
+                        <p class="text-gray-600 mb-2" data-th-text="${loggedInUser.email}">user.email@example.com</p>
+                        <p class="text-gray-600 mb-4 text-center" data-th-text="${loggedInUser.about}">About the user...
+                            <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        console.log("this is profile page");
-    </script>
+        <script>
+            console.log("this is profile page");
+        </script>
 </body>
 
 </html>
