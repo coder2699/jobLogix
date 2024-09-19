@@ -7,8 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.security.core.Authentication;
-import com.personal.jobhive.services.UserService;
 
+import com.personal.jobhive.services.JobService;
+import com.personal.jobhive.services.UserService;
+import com.personal.jobhive.entities.Job;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -18,9 +21,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private JobService jobService;
+
     // user dashbaord page
     @RequestMapping(value = "/dashboard")
-    public String userDashboard() {
+    public String userDashboard(Model model) {
+        model.addAttribute("totalApplications", jobService.getAll().size());
+        model.addAttribute("starredApplications", jobService.getStarredJobs().size());
         return "user/dashboard";
     }
 

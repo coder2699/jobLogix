@@ -1,6 +1,8 @@
 package com.personal.jobhive.services.impl;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -104,5 +106,12 @@ public class JobServiceImpl implements JobService
         Sort sort = order.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
         var pageable = PageRequest.of(page, size, sort);
         return jobsRepo.findByUserAndLocationContaining(user, locationKeyword, pageable);
+    }
+
+    @Override
+    public List<Job> getStarredJobs() {
+        return jobsRepo.findAll().stream()
+        .filter(job -> job.isStarred())
+        .collect(Collectors.toList());
     }
 }

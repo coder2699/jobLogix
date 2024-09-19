@@ -35,4 +35,6 @@ public interface JobService {
     Page<Job> searchByJobRole(String roleKeyword, int size, int page, String sortBy, String order, User user);
 
     Page<Job> searchByLocation(String locationKeyword, int size, int page, String sortBy, String order, User user);
+
+    List<Job> getStarredJobs();
 }

@@ -17,17 +17,55 @@
             <div data-th-replace="~{user/sidebar :: sidebar}"></div>
         </div>
 
-        <div class="sm:pl-64 pt-20" style="height: 1000px">
+        <div class="sm:pl-64">
             <div class="flex justify-center flex-col items-center">
-                <h1 class="text-5xl">Welcome to Dashbaord page</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Consequatur, ratione!
-                </p>
+
+                <!-- Features Section -->
+                <section class="py-20">
+                    <div class="container mx-auto text-center">
+                        <h3 class="text-5xl mb-12 animate__animated animate__fadeInUp">Dashboard</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+                            <div
+                                class="p-6 bg-white dark:bg-gray-800 rounded shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
+                                <i class="fa-solid fa-file text-4xl mb-4" style="color: #505fc0;"></i>
+                                <h3 class="text-xl font-semibold mb-2"><span th:text="${totalApplications}"></span>
+                                    Applications</h3>
+                                <p class="text-gray-600">Count of all submitted applications.</p>
+                            </div>
+                            <div
+                                class="p-6 bg-white dark:bg-gray-800 rounded shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
+                                <i class="fa-solid fa-star text-4xl mb-4" style="color: #505fc0;"></i>
+                                <h3 class="text-xl font-semibold mb-2"><span th:text="${starredApplications}"></span>
+                                    Starred </h3>
+                                <p class="text-gray-600">High priority job applications.</p>
+                            </div>
+                            <div
+                                class="p-6 bg-white dark:bg-gray-800 rounded shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
+                                <i class="fa-solid fa-trophy text-4xl mb-4" style="color: #505fc0;"></i>
+                                <!-- todo: add logic for Percentage -->
+                                <h3 class="text-xl font-semibold mb-2"><span th:text="${starredApplications}"></span>%
+                                    Success Rate
+                                </h3>
+                                <p class="text-gray-600">Percentage of applications resulting in offers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="container mx-auto block w-full p-6">
+                    <div
+                        class="text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 hover:shadow-lg transition duration-300 transform hover:scale-105">
+                        <i class="fa-solid fa-trophy text-4xl mb-4 pt-8" style="color: #505fc0;"></i>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <span th:text="${starredApplications}"></span>% Success Rate
+                        </h5>
+                        <p class="font-normal text-gray-700 dark:text-gray-400 pb-8">Percentage of applications that
+                            resulted in interviews or job offers.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <script>
         console.log("this is profile page");
     </script>
