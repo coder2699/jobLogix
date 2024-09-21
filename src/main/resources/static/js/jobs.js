@@ -27,6 +27,17 @@ const instanceOptions = {
     override: true,
 };
 
+function formatDate(dateString) {
+    // Create a Date object from the input string
+    const date = new Date(dateString);
+
+    // Define options for formatting the date
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+
+    // Format the date using toLocaleDateString
+    return date.toLocaleDateString('en-US', options);
+}
+
 const jobModal = new Modal(viewJobModal, options, instanceOptions);
 
 function openJobModal() {
@@ -43,10 +54,19 @@ async function loadJobdata(id) {
     try {
         const data = await (await fetch(`${baseURL}/api/jobs/${id}`)).json();
         console.log('data->',data);
-        document.querySelector("#job_role").innerHTML = data.jobRole;
+        document.querySelector("#picture").src = data.picture;
+        document.querySelector("#company").innerHTML = data.company;
+        document.querySelector("#jobRole").innerHTML = data.jobRole;
+        document.querySelector("#location").innerHTML = data.location;
+        document.querySelector("#platform").innerHTML = 'Applied On ' + data.platform;
+        document.querySelector("#appliedDate").innerHTML = formatDate(data.appliedDate);
+        document.querySelector("#referral").innerHTML = data.referred? 'Referred By '+ data.referredBy:'Referred By None';
+        document.querySelector("#starred").innerHTML = data.starred?'🟢 Active Job Application':'🔴 Inactive Job Application';
+        document.querySelector("#currentStatus").innerHTML = data.currentStatus;
         document.querySelector("#description").innerHTML = data.description;
-        document.querySelector("#applied_date").innerHTML = "Applied On: " + data.appliedDate;
-        document.querySelector("#company").innerHTML = data.company + ", " + data.location;
+        document.querySelector("#jobUrl").innerHTML = data.jobUrl;
+        document.querySelector("#cvLink").innerHTML = data.cvLink;
+        document.querySelector("#cvLink").href = data.cvLink;
         openJobModal();
     } catch (error) {
         console.log("Error: ", error);
