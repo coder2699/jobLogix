@@ -39,6 +39,7 @@ public class Job {
     private boolean isReferred = false;
     private String referredBy;
     private String picture;
+    private String currentStatus;
     private String cloudinaryImagePublicId;
     
     @ManyToOne

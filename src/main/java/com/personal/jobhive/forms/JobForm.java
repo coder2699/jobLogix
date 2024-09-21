@@ -40,6 +40,8 @@ public class JobForm {
     private JobStatus status = JobStatus.Apply;
     private MultipartFile picture;
 
+    private String currentStatus;
+
     @ValidFile(message = "Invalid File")
     private MultipartFile companyImage;
 }

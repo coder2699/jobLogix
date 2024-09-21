@@ -90,6 +90,7 @@ public class JobController {
         job.setLocation(jobForm.getLocation());
         job.setDescription(jobForm.getDescription());
         job.setJobLink(jobForm.getJobLink());
+        job.setCurrentStatus(jobForm.getCurrentStatus());
         job.setCvLink(jobForm.getCvLink());
         job.setPlatform(jobForm.getPlatform());
         job.setUser(user);
@@ -195,6 +196,7 @@ public class JobController {
         JobForm jobForm = new JobForm();
         jobForm.setCompany(job.getCompany());
         jobForm.setStarred(job.isStarred());
+        jobForm.setCurrentStatus(job.getCurrentStatus());
         jobForm.setReferred(job.isReferred());
         jobForm.setReferredBy(job.getReferredBy());
         jobForm.setJobRole(job.getJobRole());
@@ -226,6 +228,7 @@ public class JobController {
         con.setJobId(jobId);
         con.setCompany(jobForm.getCompany());
         con.setStarred(jobForm.isStarred());
+        con.setCurrentStatus(jobForm.getCurrentStatus());
         con.setReferred(jobForm.isReferred());
         con.setReferredBy(jobForm.getReferredBy());
         con.setJobRole(jobForm.getJobRole());
