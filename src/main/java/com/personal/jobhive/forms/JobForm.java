@@ -30,6 +30,8 @@ public class JobForm {
     private String platform;
 
     private boolean starred;
+    private boolean isReferred;
+    private String referredBy;
     private String cvLink;
 
     private LocalDate appliedDate;

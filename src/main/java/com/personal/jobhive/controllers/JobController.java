@@ -51,6 +51,7 @@ public class JobController {
     public String addJob(Model model) {
         JobForm jobForm = new JobForm();
         jobForm.setStarred(true);
+        jobForm.setReferred(false);
         model.addAttribute("jobForm", jobForm);
         return "user/add_job";
     }
@@ -66,7 +67,7 @@ public class JobController {
         if (result.hasErrors()) {
             result.getAllErrors().forEach(error -> logger.info(error.toString()));
             session.setAttribute("message", Message.builder()
-                    .content("Please correct the following errors")
+                    .content("Please fill the required details")
                     .type(MessageType.red)
                     .build());
             return "user/add_job";
@@ -83,6 +84,8 @@ public class JobController {
         Job job = new Job();
         job.setCompany(jobForm.getCompany());
         job.setStarred(jobForm.isStarred());
+        job.setReferred(jobForm.isReferred());
+        job.setReferredBy(jobForm.getReferredBy());
         job.setJobRole(jobForm.getJobRole());
         job.setLocation(jobForm.getLocation());
         job.setDescription(jobForm.getDescription());
@@ -192,6 +195,8 @@ public class JobController {
         JobForm jobForm = new JobForm();
         jobForm.setCompany(job.getCompany());
         jobForm.setStarred(job.isStarred());
+        jobForm.setReferred(job.isReferred());
+        jobForm.setReferredBy(job.getReferredBy());
         jobForm.setJobRole(job.getJobRole());
         jobForm.setLocation(job.getLocation());
         jobForm.setDescription(job.getDescription());
@@ -221,6 +226,8 @@ public class JobController {
         con.setJobId(jobId);
         con.setCompany(jobForm.getCompany());
         con.setStarred(jobForm.isStarred());
+        con.setReferred(jobForm.isReferred());
+        con.setReferredBy(jobForm.getReferredBy());
         con.setJobRole(jobForm.getJobRole());
         con.setLocation(jobForm.getLocation());
         con.setDescription(jobForm.getDescription());

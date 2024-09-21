@@ -43,7 +43,7 @@
                                     </div>
                                     <input data-th-field="*{company}" type="text"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="company" />
+                                        placeholder="Enter company name" />
                                 </div>
                                 <p class="text-red-500" data-th-if="${#fields.hasErrors('company')}"
                                     data-th-errors="*{company}">
@@ -62,7 +62,7 @@
                                     </div>
                                     <input data-th-field="*{jobRole}" type="text"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="jobRole" />
+                                        placeholder="Enter job role" />
                                 </div>
                                 <p class="text-red-500" data-th-if="${#fields.hasErrors('jobRole')}"
                                     data-th-errors="*{jobRole}">
@@ -80,7 +80,7 @@
                                     </div>
                                     <input data-th-field="*{location}" type="text"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="location" />
+                                        placeholder="Enter location" />
                                 </div>
                                 <p class="text-red-500" data-th-if="${#fields.hasErrors('location')}"
                                     data-th-errors="*{location}">
@@ -99,7 +99,7 @@
                                     </div>
                                     <input data-th-field="*{platform}" type="text"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="platform" />
+                                        placeholder="Platform applied on (LinkedIn/Naukri/Carrer Page/ etc.)" />
                                 </div>
                                 <p class="text-red-500" data-th-if="${#fields.hasErrors('platform')}"
                                     data-th-errors="*{platform}">
@@ -110,10 +110,10 @@
                             <div class="flex space-x-3 mb-3">
                                 <div class="w-full">
                                     <!-- dates  -->
-                                    <div class="mb-3">
+                                    <div class="">
                                         <label for="countries"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Applied On</label>
-                                        <div class="relative mb-6">
+                                            class="block text-sm font-medium text-gray-900 dark:text-white mb-3">Applied On</label>
+                                        <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -130,6 +130,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <!-- <div class="w-full"> -->
                                     <!-- status  -->
                                     <!-- <div class="mb-3"> -->
@@ -149,6 +150,26 @@
                                     <!-- </div> -->
                                 <!-- </div> -->
                             </div>
+
+                            <!-- referral -->
+                            <div class="flex items-center mb-3">
+                                <input id="isReferred" data-th-field="*{referred}" type="checkbox"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                <label for="default-checkbox"
+                                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Applied using referral?</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="input-group-1"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Referred By?</label>
+                                <div class="relative mb-1">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-solid fa-circle-info"></i>                                    </div>
+                                    <input id="referredBy" data-th-field="*{referredBy}" type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Enter name or linkedin url" />
+                                </div>
+                            </div>
                             <!-- description -->
                             <div class="mb-3">
                                 <label for="message"
@@ -162,8 +183,8 @@
                             <div class="flex space-x-3 mb-3">
                                 <div class="w-full">
                                     <!-- job  link  -->
-                                    <div class="mb-3">
-                                        <div class="relative mb-6">
+                                    <div class="">
+                                        <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                                 <i class="fa-solid w-4 h-4 fa-link"></i>
@@ -176,8 +197,8 @@
                                 </div>
                                 <div class="w-full">
                                     <!-- cv  link  -->
-                                    <div class="mb-3">
-                                        <div class="relative mb-6">
+                                    <div class="">
+                                        <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                                 <i class="fa-regular w-4 h-4 fa-file"></i>
@@ -206,7 +227,7 @@
                                     alt="" />
                             </div>
 
-                            <!-- starred checkbox -->
+                            <!-- active checkbox -->
 
                             <div class="flex items-center mb-3">
                                 <input data-th-field="*{starred}" type="checkbox"
@@ -233,6 +254,7 @@
     </div>
 
     <script data-th-src="@{'/js/admin.js'}"></script>
+    <script data-th-src="@{'/js/disableReferredBy.js'}"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script>

@@ -36,6 +36,8 @@ public class JobServiceImpl implements JobService
                 .orElseThrow(() -> new ResourceNotFoundException("Job not found"));
         jobOld.setCompany(job.getCompany());
         jobOld.setStarred(job.isStarred());
+        jobOld.setReferred(job.isReferred());
+        jobOld.setReferredBy(job.getReferredBy());
         jobOld.setJobRole(job.getJobRole());
         jobOld.setLocation(job.getLocation());
         jobOld.setDescription(job.getDescription());

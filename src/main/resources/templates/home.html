@@ -60,7 +60,7 @@
       </button>
     </section>
 
-    <section class="text-center" style="margin-top: 4rem;">
+    <section class="text-center" style="margin-top: 6rem;">
       <h1
         class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
         Streamline Your <span
@@ -70,65 +70,40 @@
           applications in one place."</i></p>
     </section>
 
-    <!-- cards -->
-    <section class="grid grid-cols-2 md:grid-cols-2 gap-8" style="padding: 5%;">
-      <div>
-        <a data-th-href="@{'/user/jobs/add'}"
-          class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-          <img class="object-cover w-full rounded-t-lg h-96 md:h-10 md:w-10 md:rounded-none md:rounded-s-lg"
-            src="https://img.freepik.com/free-psd/3d-female-character-working-laptop-while-sitting-chair_23-2148938889.jpg?t=st=1726584803~exp=1726585403~hmac=3f81b8eec99f9a9ffd4a1795d903fe327ecfa3170233b1b44e93560080bf0a98"
-            alt="">
-          <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Add Job</h5>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Quickly add new job applications.
-            </p>
-          </div>
-        </a>
-      </div>
-      <div>
-        <a data-th-href="@{'/user/jobs'}"
-          class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-          <img class="object-cover w-full rounded-t-lg h-96 md:h-10 md:w-10 md:rounded-none md:rounded-s-lg"
-            src="https://img.freepik.com/free-psd/infographic-elements-three-dimensional-icon_23-2149740208.jpg?w=1380&t=st=1726585113~exp=1726585713~hmac=bb7ae4a6893ca5bb8cf9010936019a1df203fdfd9d4b9781987187607751c9a6"
-            alt="">
-          <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">View Jobs</h5>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Browse, manage and track your applications
-              list.
-            </p>
-          </div>
-        </a>
-      </div>
-      <div>
-        <a data-th-href="@{'/user/dashboard'}"
-          class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-          <img class="object-cover w-full rounded-t-lg h-96 md:h-10 md:w-10 md:rounded-none md:rounded-s-lg"
-            src="https://img.freepik.com/free-psd/infographic-elements-three-dimensional-icon_23-2149740230.jpg?w=1380&t=st=1726584790~exp=1726585390~hmac=42784233b64b7db87730156f2387040aaae8224e03c9decd35b8f84b9fd15cee"
-            alt="">
-          <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Dashboard</h5>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Overview of your application progress and
-              stats.
-
-            </p>
-          </div>
-        </a>
-      </div>
-      <div>
-        <a data-th-href="@{'/user/profile'}"
-          class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-          <img class="object-cover w-full rounded-t-lg h-96 md:h-10 md:w-10 md:rounded-none md:rounded-s-lg"
-            src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=1380&t=st=1726585990~exp=1726586590~hmac=de5dd9e12f629dbad1d2525a33b8eb1cc2fc52a90e0d1e40faef31a50bcb2d0e"
-            alt="">
-          <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Manage Profile</h5>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Update your personal information and
-              preferences.</p>
-          </div>
-        </a>
+    <!-- Features Section -->
+    <section class="py-20">
+      <div class="container mx-auto text-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <a data-th-href="@{'/user/dashboard'}"
+            class="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
+            <img class="object-cover w-full rounded-xl h-96 md:h-10 md:w-10"
+              src="https://img.freepik.com/free-psd/infographic-elements-three-dimensional-icon_23-2149740230.jpg?w=1380&t=st=1726584790~exp=1726585390~hmac=42784233b64b7db87730156f2387040aaae8224e03c9decd35b8f84b9fd15cee"
+              alt="">
+            <h3 class="pt-8 text-xl font-semibold mb-2"><span th:text="${totalApplications}"></span>
+              Dashboard</h3>
+            <p class="pb-8 text-gray-600">Overview of your application progress and stats.</p>
+          </a>
+          <a data-th-href="@{'/user/jobs/add'}"
+            class="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
+            <img class="object-cover w-full rounded-xl h-96 md:h-10 md:w-10"
+              src="https://img.freepik.com/free-psd/3d-female-character-working-laptop-while-sitting-chair_23-2148938889.jpg?t=st=1726584803~exp=1726585403~hmac=3f81b8eec99f9a9ffd4a1795d903fe327ecfa3170233b1b44e93560080bf0a98"
+              alt="">
+            <h3 class="pt-8 text-xl font-semibold mb-2"><span th:text="${totalApplications}"></span>
+              Add Job Application</h3>
+            <p class="pb-8 text-gray-600">Quickly add new job applications.</p>
+          </a>
+          <a data-th-href="@{'/user/jobs'}"
+            class="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
+            <img class="object-cover w-full rounded-xl h-96 md:h-10 md:w-10"
+              src="https://img.freepik.com/free-psd/infographic-elements-three-dimensional-icon_23-2149740208.jpg?w=1380&t=st=1726585113~exp=1726585713~hmac=bb7ae4a6893ca5bb8cf9010936019a1df203fdfd9d4b9781987187607751c9a6"
+              alt="">
+            <h3 class="pt-8 text-xl font-semibold mb-2"><span th:text="${totalApplications}"></span>
+              View Job Applications</h3>
+            <p class="pb-8 text-gray-600">Browse, manage and track your applications list.</p>
+          </a>
+        </div>
       </div>
     </section>
-
 
     <!-- common footer -->
     <footer class="bg-gray rounded-lg dark:bg-gray-900 m-4">

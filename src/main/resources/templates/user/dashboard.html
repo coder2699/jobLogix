@@ -36,14 +36,14 @@
                                 class="p-6 bg-white dark:bg-gray-800 rounded shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
                                 <i class="fa-solid fa-star text-4xl mb-4" style="color: #505fc0;"></i>
                                 <h3 class="text-xl font-semibold mb-2"><span th:text="${starredApplications}"></span>
-                                    Starred </h3>
+                                    Active </h3>
                                 <p class="text-gray-600">High priority job applications.</p>
                             </div>
                             <div
                                 class="p-6 bg-white dark:bg-gray-800 rounded shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
                                 <i class="fa-solid fa-trophy text-4xl mb-4" style="color: #505fc0;"></i>
                                 <!-- todo: add logic for Percentage -->
-                                <h3 class="text-xl font-semibold mb-2"><span th:text="${starredApplications}"></span>%
+                                <h3 class="text-xl font-semibold mb-2"><span th:text="${starredApplications}"></span>5%
                                     Success Rate
                                 </h3>
                                 <p class="text-gray-600">Percentage of applications resulting in offers.</p>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </section>
-                <div class="container mx-auto block w-full p-6">
+                <!-- <div class="container mx-auto block w-full p-6">
                     <div
                         class="text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 hover:shadow-lg transition duration-300 transform hover:scale-105">
                         <i class="fa-solid fa-trophy text-4xl mb-4 pt-8" style="color: #505fc0;"></i>
@@ -62,13 +62,26 @@
                             resulted in interviews or job offers.
                         </p>
                     </div>
-                </div>
+                </div> -->
+            </div>
+
+        <div class="rounded-xl bg-white dark:bg-gray-800 bg-clip-border text-gray-700 dark:text-white shadow-md">
+            <div>
+                <h3 class="pt-8 text-center text-2xl font-sans font-semibold leading-relaxed tracking-normal text-gray-700 dark:text-white antialiased">
+                    Applications in Different Stages
+                </h3>
+              </div>
+            <div class="pt-6 px-2 pb-0">
+                <div id="bar-chart"></div>
             </div>
         </div>
+        </div>
     </div>
-    <script>
-        console.log("this is profile page");
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script data-th-src="@{'/js/chart.js'}">
     </script>
+
 </body>
 
 </html>

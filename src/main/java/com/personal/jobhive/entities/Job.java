@@ -36,6 +36,8 @@ public class Job {
     private LocalDate interviewDate;
     private JobStatus status = JobStatus.Apply;
     private boolean starred = false;
+    private boolean isReferred = false;
+    private String referredBy;
     private String picture;
     private String cloudinaryImagePublicId;
     
