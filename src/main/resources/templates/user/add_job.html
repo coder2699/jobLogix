@@ -84,7 +84,7 @@
                                 </div>
                                 <p class="text-red-500" data-th-if="${#fields.hasErrors('location')}"
                                     data-th-errors="*{location}">
-                                    Invalid Name
+                                    Invalid Location
                                 </p>
                             </div>
                             <!-- platform -->
@@ -107,7 +107,7 @@
                                 </p>
                             </div>
                             <!-- dates & status -->
-                            <div class="flex space-x-3 mb-3">
+                            <div class="flex space-x-3">
                                 <div class="w-full">
                                     <!-- dates  -->
                                     <div class="">
@@ -129,6 +129,11 @@
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Select date">
                                         </div>
+
+                                        <p class="mb-3 text-red-500" data-th-if="${#fields.hasErrors('appliedDate')}"
+                                            data-th-errors="*{appliedDate}">
+                                            Invalid Date
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -183,7 +188,7 @@
                                 </div>
                             </div>
                             <!-- description -->
-                            <div class="mb-3">
+                            <div class="">
                                 <label for="message"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job
                                     Description</label>
@@ -191,8 +196,12 @@
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Enter job description"></textarea>
                             </div>
+                            <p class="mb-3 text-red-500" data-th-if="${#fields.hasErrors('description')}"
+                                data-th-errors="*{description}">
+                                Invalid Description
+                            </p>
                             <!-- links -->
-                            <div class="flex space-x-3 mb-3">
+                            <div class="flex space-x-3">
                                 <div class="w-full">
                                     <!-- job  link  -->
                                     <div class="">
@@ -205,6 +214,10 @@
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Enter Job url" />
                                         </div>
+                                        <p class="mb-3 text-red-500" data-th-if="${#fields.hasErrors('jobLink')}"
+                                            data-th-errors="*{jobLink}">
+                                            Invalid Job Url
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -219,6 +232,10 @@
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Enter your CV link" />
                                         </div>
+                                        <p class="mb-3 text-red-500" data-th-if="${#fields.hasErrors('cvLink')}"
+                                            data-th-errors="*{cvLink}">
+                                            Invalid CV Link
+                                        </p>
                                     </div>
                                 </div>
                             </div>

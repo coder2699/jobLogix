@@ -5,6 +5,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.personal.jobhive.entities.JobStatus;
 import com.personal.jobhive.validators.ValidFile;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,15 +27,20 @@ public class JobForm {
     @NotBlank(message = "Location is required")
     private String location;
 
+    @NotBlank(message = "Description is required")
     private String description;
+    @NotBlank(message = "Job Url is required")
     private String jobLink;
+    @NotBlank(message = "Platform is required")
     private String platform;
 
     private boolean starred;
     private boolean isReferred;
     private String referredBy;
+    @NotBlank(message = "CV Link is required")
     private String cvLink;
 
+    @NotNull(message = "Date is required")
     private LocalDate appliedDate;
     private LocalDate interviewDate;
     
