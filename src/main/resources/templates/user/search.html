@@ -42,16 +42,18 @@
                                         class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                         </svg>
                                     </div>
                                     <input id="searchInput" data-th-field="*{value}" type="text"
                                         class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Search for users" disabled/>
+                                        placeholder="Search job application" disabled />
                                 </div>
                             </div>
-                            <button id="searchButton" type="submit" class="px-3 py-2 bg-gray-800 text-white rounded">
+                            <button id="searchButton" type="submit"
+                                class="px-3 py-2 bg-gray-800 text-white rounded">
                                 Search
                             </button>
                             <label for="table-search" class="sr-only">Search</label>
@@ -59,9 +61,11 @@
                     </form>
                     <table data-th-if="${pageJob.totalElements>0}"
                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <thead
+                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">Company Name</th>
+                                <th scope="col" class="px-6 py-3">Current Status</th>
                                 <th scope="col" class="px-6 py-3">Applied On</th>
                                 <th scope="col" class="px-6 py-3">Links</th>
                                 <th scope="col" class="px-6 py-3">Action</th>
@@ -86,15 +90,18 @@
                                     </div>
                                 </th>
                                 <td class="px-6 py-4">
+                                    <span data-th-text="*{currentStatus}"></span>
+                                </td>
+                                <td class="px-6 py-4">
                                     <i class="fa-regular w-4 h-4 fa-calendar"></i>
                                     <span data-th-text="*{appliedDate}"></span>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center">
-                                        <div data-th-if="*{starred}" class="h-2.5 w-2.5 rounded-full bg-green-500 me-2">
-                                        </div>
+                                        <div data-th-if="*{starred}"
+                                            class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
                                         <div data-th-unless="*{starred}"
-                                        class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>
+                                            class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>
                                         <a data-th-href="@{*{jobLink}}" target="_blank"><i
                                                 class="fa-solid w-6 h-6 fa-link"></i></a>
                                         <a data-th-href="@{*{cvLink}}" target="_blank">

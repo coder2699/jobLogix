@@ -50,7 +50,7 @@
                                         </div>
                                         <input id="searchInput" data-th-field="*{value}" type="text"
                                             class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Search for users" disabled />
+                                            placeholder="Search job application" disabled />
                                     </div>
                                 </div>
                                 <button id="searchButton" type="submit"
@@ -66,6 +66,7 @@
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">Company Name</th>
+                                    <th scope="col" class="px-6 py-3">Current Status</th>
                                     <th scope="col" class="px-6 py-3">Applied On</th>
                                     <th scope="col" class="px-6 py-3">Links</th>
                                     <th scope="col" class="px-6 py-3">Action</th>
@@ -89,6 +90,9 @@
                                             </div>
                                         </div>
                                     </th>
+                                    <td class="px-6 py-4">
+                                        <span data-th-text="*{currentStatus}"></span>
+                                    </td>
                                     <td class="px-6 py-4">
                                         <i class="fa-regular w-4 h-4 fa-calendar"></i>
                                         <span data-th-text="*{appliedDate}"></span>

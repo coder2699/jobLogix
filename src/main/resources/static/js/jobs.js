@@ -64,7 +64,8 @@ async function loadJobdata(id) {
         document.querySelector("#starred").innerHTML = data.starred?'🟢 Active Job Application':'🔴 Inactive Job Application';
         document.querySelector("#currentStatus").innerHTML = data.currentStatus;
         document.querySelector("#description").innerHTML = data.description;
-        document.querySelector("#jobUrl").innerHTML = data.jobUrl;
+        document.querySelector("#jobLink").innerHTML = data.jobLink;
+        document.querySelector("#jobLink").href = data.jobLink;
         document.querySelector("#cvLink").innerHTML = data.cvLink;
         document.querySelector("#cvLink").href = data.cvLink;
         openJobModal();

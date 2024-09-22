@@ -184,15 +184,15 @@
                                 </div>
                             </div>
                             <!-- description -->
-                            <div class="">
+                            <div class="mb-3">
                                 <label for="message"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job
+                                    class="block text-sm font-medium text-gray-900 dark:text-white">Job
                                     Description</label>
                                 <textarea data-th-field="*{description}" rows="4"
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Enter job description"></textarea>
                             </div>
-                            <p class="mb-3 text-red-500" data-th-if="${#fields.hasErrors('description')}"
+                            <p class="text-red-500" data-th-if="${#fields.hasErrors('description')}"
                                 data-th-errors="*{description}">
                                 Invalid Description
                             </p>
@@ -200,7 +200,7 @@
                             <div class="flex space-x-3">
                                 <div class="w-full">
                                     <!-- job  link  -->
-                                    <div class="">
+                                    <div class="mb-3">
                                         <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
