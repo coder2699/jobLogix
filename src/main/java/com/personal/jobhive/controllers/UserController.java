@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import com.personal.jobhive.services.JobService;
 import com.personal.jobhive.services.UserService;
 import com.personal.jobhive.entities.Job;
+import com.personal.jobhive.helpers.Helper;
+
 import java.util.*;
 
 @Controller
@@ -29,6 +31,7 @@ public class UserController {
     public String userDashboard(Model model) {
         model.addAttribute("totalApplications", jobService.getAll().size());
         model.addAttribute("starredApplications", jobService.getStarredJobs().size());
+        model.addAttribute("successRate", Helper.calculateSuccessPercentage(jobService.getAll()));
         return "user/dashboard";
     }
 

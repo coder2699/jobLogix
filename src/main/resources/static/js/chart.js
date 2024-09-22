@@ -1,8 +1,10 @@
-const chartConfig = {
+// Function to generate the chart with dynamic data
+function generateChart(dynamicData) {
+  const chartConfig = {
     series: [
       {
         name: "Status",
-        data: [1, 1, 2, 5, 4, 3, 1],
+        data: dynamicData.data,  // Dynamic data array
       },
     ],
     chart: {
@@ -16,7 +18,7 @@ const chartConfig = {
       show: "",
     },
     dataLabels: {
-      enabled: false,
+      enabled: true,
     },
     colors: ["#505fc0"],
     plotOptions: {
@@ -40,17 +42,10 @@ const chartConfig = {
           fontWeight: 400,
         },
       },
-      categories: [
-        "Shortlisted",
-        "Not Shortlisted",
-        "Interview Failed",
-        "Interview Passed",
-        "Offers Received",
-        "Offers Accepted",
-        "Offers Rejected",
-      ],
+      categories: dynamicData.categories,  // Dynamic categories
     },
     yaxis: {
+      show: false,
       labels: {
         style: {
           colors: "#616161",
@@ -61,7 +56,7 @@ const chartConfig = {
       },
     },
     grid: {
-      show: true,
+      show: false,
       borderColor: "#dddddd",
       strokeDashArray: 5,
       xaxis: {
@@ -81,7 +76,13 @@ const chartConfig = {
       theme: "dark",
     },
   };
-   
+
   const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);
-   
   chart.render();
+}
+
+// Fetch dynamic data from API and generate chart
+fetch('/api/chart-data')
+  .then(response => response.json())
+  .then(data => generateChart(data))
+  .catch(error => console.error('Error fetching data:', error));
