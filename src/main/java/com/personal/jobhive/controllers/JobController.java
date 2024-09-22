@@ -151,10 +151,13 @@ public class JobController {
         var user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
 
         Page<Job> pageJob = null;
-        if (jobSearchForm.getField().equalsIgnoreCase("company")) {
+        if (jobSearchForm.getField().equalsIgnoreCase("currentStatus")) {
+            pageJob = jobService.searchByCurrentStatus(jobSearchForm.getValue(), size, page, sortBy, direction,
+                    user);
+        } else if (jobSearchForm.getField().equalsIgnoreCase("company")) {
             pageJob = jobService.searchByCompany(jobSearchForm.getValue(), size, page, sortBy, direction,
                     user);
-        } else if (jobSearchForm.getField().equalsIgnoreCase("jobRole")) {
+        }  else if (jobSearchForm.getField().equalsIgnoreCase("jobRole")) {
             pageJob = jobService.searchByJobRole(jobSearchForm.getValue(), size, page, sortBy, direction,
                     user);
         } else if (jobSearchForm.getField().equalsIgnoreCase("location")) {

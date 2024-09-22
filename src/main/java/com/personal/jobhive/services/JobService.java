@@ -30,6 +30,8 @@ public interface JobService {
     
     Page<Job> getByUser(User user, int page, int size, String sortField, String sortDirection);
     
+    Page<Job> searchByCurrentStatus(String currentStatusKeyword, int size, int page, String sortBy, String order, User user);
+    
     Page<Job> searchByCompany(String companyKeyword, int size, int page, String sortBy, String order, User user);
 
     Page<Job> searchByJobRole(String roleKeyword, int size, int page, String sortBy, String order, User user);

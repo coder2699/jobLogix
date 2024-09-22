@@ -87,6 +87,14 @@ public class JobServiceImpl implements JobService
     }
 
     @Override
+    public Page<Job> searchByCurrentStatus(String currentStatusKeyword, int size, int page, String sortBy, String order,
+            User user) {
+        Sort sort = order.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+        var pageable = PageRequest.of(page, size, sort);
+        return jobsRepo.findByUserAndCurrentStatusContaining(user, currentStatusKeyword, pageable);
+    }
+
+    @Override
     public Page<Job> searchByCompany(String companyKeyword, int size, int page, String sortBy, String order, User user) {
 
         Sort sort = order.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();

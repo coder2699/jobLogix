@@ -19,6 +19,8 @@ public interface JobRepo extends JpaRepository<Job, String>{
     @Query("SELECT c FROM Job c WHERE c.user.id = :userId")
     List<Job> findByUserId(@Param("userId") String userId);
 
+    Page<Job> findByUserAndCurrentStatusContaining(User user, String currentStatus, Pageable pageable);
+    
     Page<Job> findByUserAndCompanyContaining(User user, String companykeyword, Pageable pageable);
 
     Page<Job> findByUserAndJobRoleContaining(User user, String rolekeyword, Pageable pageable);

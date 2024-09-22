@@ -10,10 +10,7 @@ import org.springframework.security.core.Authentication;
 
 import com.personal.jobhive.services.JobService;
 import com.personal.jobhive.services.UserService;
-import com.personal.jobhive.entities.Job;
 import com.personal.jobhive.helpers.Helper;
-
-import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -40,9 +37,4 @@ public class UserController {
     public String userProfile(Model model, Authentication authentication) {
         return "user/profile";
     }
-    
-    // user add job page
-    // user view job page
-    // user edit job page
-    // user delete job page
 }
