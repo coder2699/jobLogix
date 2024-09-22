@@ -74,7 +74,9 @@
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">Company Name</th>
+                                    <th scope="col" class="px-6 py-3">Role</th>
                                     <th scope="col" class="px-6 py-3">Current Status</th>
+                                    <th scope="col" class="px-6 py-3">Location</th>
                                     <th scope="col" class="px-6 py-3">Applied On</th>
                                     <th scope="col" class="px-6 py-3">Links</th>
                                     <th scope="col" class="px-6 py-3">Action</th>
@@ -92,14 +94,16 @@
                                             <div class="text-base font-semibold" data-th-text="*{company}">
                                                 Neil Sims
                                             </div>
-                                            <div class="font-normal text-gray-500"
-                                                data-th-text="*{jobRole}+', '+*{location}">
-                                                Bengaluru, India
-                                            </div>
                                         </div>
                                     </th>
                                     <td class="px-6 py-4">
+                                        <span data-th-text="*{jobRole}"></span>
+                                    </td>
+                                    <td class="px-6 py-4">
                                         <span data-th-text="*{currentStatus}"></span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span data-th-text="*{location}"></span>
                                     </td>
                                     <td class="px-6 py-4">
                                         <i class="fa-regular w-4 h-4 fa-calendar"></i>
