@@ -15,19 +15,19 @@
         <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
           <img
-            src="https://img.freepik.com/free-vector/business-stress-professional-burnout-scenes-flat-isolated-vector-illustration_1284-77609.jpg?t=st=1726590491~exp=1726594091~hmac=e2b9b0a17c8d7f55b7f746fc9481e6b2f2eab08ab65abcf5eee497e0a48fd1f7&w=1800"
+            data-th-src="@{'/images/caraousel1.jpg'}"
             class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
         </div>
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
           <img
-            src="https://img.freepik.com/free-vector/tasks-schedule-concept-with-people-making-notes_107791-15370.jpg?t=st=1726590686~exp=1726594286~hmac=794de4c5520ebd6ac3a5b3a10e0154adb54e31769ec94f029c2bdbce0639b8b1&w=1800"
+            data-th-src="@{'/images/caraousel2.jpg'}"
             class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
         </div>
         <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
           <img
-            src="https://img.freepik.com/free-vector/job-search-recruitment-composition-with-hands-holding-tablet-with-candidates-rating-characters-successful-applicants-vector-illustration_1284-69589.jpg?t=st=1726591279~exp=1726594879~hmac=66f49ed69fd543c0a3ca83de2c6e3a73e0dd2acafdffe98768bffd4ec161423c&w=1800"
+            data-th-src="@{'/images/caraousel3.jpg'}"
             class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
         </div>
       </div>
@@ -77,7 +77,7 @@
           <a data-th-href="@{'/user/dashboard'}"
             class="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
             <img class="object-cover w-full rounded-xl h-96 md:h-10 md:w-10"
-              src="https://img.freepik.com/free-psd/infographic-elements-three-dimensional-icon_23-2149740230.jpg?w=1380&t=st=1726584790~exp=1726585390~hmac=42784233b64b7db87730156f2387040aaae8224e03c9decd35b8f84b9fd15cee"
+              data-th-src="@{'/images/dashboard.jpg'}"
               alt="">
             <h3 class="pt-8 text-xl font-semibold mb-2"><span th:text="${totalApplications}"></span>
               Dashboard</h3>
@@ -86,7 +86,7 @@
           <a data-th-href="@{'/user/jobs/add'}"
             class="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
             <img class="object-cover w-full rounded-xl h-96 md:h-10 md:w-10"
-              src="https://img.freepik.com/free-psd/3d-female-character-working-laptop-while-sitting-chair_23-2148938889.jpg?t=st=1726584803~exp=1726585403~hmac=3f81b8eec99f9a9ffd4a1795d903fe327ecfa3170233b1b44e93560080bf0a98"
+            data-th-src="@{'/images/add.jpg'}"
               alt="">
             <h3 class="pt-8 text-xl font-semibold mb-2"><span th:text="${totalApplications}"></span>
               Add Job Application</h3>
@@ -95,8 +95,8 @@
           <a data-th-href="@{'/user/jobs'}"
             class="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition duration-300 transform hover:scale-105">
             <img class="object-cover w-full rounded-xl h-96 md:h-10 md:w-10"
-              src="https://img.freepik.com/free-psd/infographic-elements-three-dimensional-icon_23-2149740208.jpg?w=1380&t=st=1726585113~exp=1726585713~hmac=bb7ae4a6893ca5bb8cf9010936019a1df203fdfd9d4b9781987187607751c9a6"
-              alt="">
+            data-th-src="@{'/images/view.jpg'}"
+            alt="">
             <h3 class="pt-8 text-xl font-semibold mb-2"><span th:text="${totalApplications}"></span>
               View Job Applications</h3>
             <p class="pb-8 text-gray-600">Browse, manage and track your applications list.</p>
