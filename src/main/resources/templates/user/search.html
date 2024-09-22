@@ -22,7 +22,7 @@
             </div>
 
             <div class="jobs_container p-5">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div class="flex md:flex-row flex-col items-center px-4 justify-between bg-white dark:bg-gray-900">
                     <form data-th-object="${jobSearchForm}" action="" data-th-action="@{'/user/jobs/search'}">
                         <div
                             class="flex p-5 space-x-3 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
@@ -59,7 +59,16 @@
                             <label for="table-search" class="sr-only">Search</label>
                         </div>
                     </form>
-                    <table data-th-if="${pageJob.totalElements>0}"
+                    <div>
+                        <button type="button" onclick="exportData()"
+                            class="px-3 py-2 bg-green-800 text-white rounded">
+                            Export
+                        </button>
+                    </div>
+                </div>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <div data-th-replace="~{message :: messagebox}"></div>
+                    <table id="job-table" data-th-if="${pageJob.totalElements>0}"
                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead
                             class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -166,6 +175,8 @@
 
     <script data-th-src="@{'/js/jobs.js'}"></script>
     <script data-th-src="@{'/js/disabled.js'}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@linways/table-to-excel@1.0.4/dist/tableToExcel.min.js"></script>
+    <script data-th-src="@{'/js/exportData.js'}"></script>
 </body>
 
 </html>
