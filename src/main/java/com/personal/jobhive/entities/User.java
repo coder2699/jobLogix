@@ -45,7 +45,7 @@ public class User implements UserDetails{
     private String profilePic;
     // information
     @Getter(value = AccessLevel.NONE)
-    private boolean enabled = true;
+    private boolean enabled = false;
     private boolean emailVerified = false;
 
     // SELF, GOOGLE, FACEBOOK, TWITTER, LINKEDIN, GITHUB
@@ -59,6 +59,8 @@ public class User implements UserDetails{
 
     @ElementCollection(fetch=FetchType.EAGER)
     private List<String> roleList = new ArrayList<>();
+
+    private String emailToken;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

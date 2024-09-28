@@ -52,8 +52,8 @@ public class JobServiceImpl implements JobService
     }
 
     @Override
-    public List<Job> getAll() {
-        return jobsRepo.findAll();
+    public List<Job> getAll(String userId) {
+        return jobsRepo.findByUserId(userId);
     }
 
     @Override
@@ -120,8 +120,8 @@ public class JobServiceImpl implements JobService
     }
 
     @Override
-    public List<Job> getStarredJobs() {
-        return jobsRepo.findAll().stream()
+    public List<Job> getStarredJobs(String userId) {
+        return jobsRepo.findByUserId(userId).stream()
         .filter(job -> job.isStarred())
         .collect(Collectors.toList());
     }

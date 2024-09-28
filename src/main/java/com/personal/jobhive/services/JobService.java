@@ -15,7 +15,7 @@ public interface JobService {
     Job update(Job job);
 
     // get jobs
-    List<Job> getAll();
+    List<Job> getAll(String userId);
 
     // get job by id
 
@@ -38,5 +38,5 @@ public interface JobService {
 
     Page<Job> searchByLocation(String locationKeyword, int size, int page, String sortBy, String order, User user);
 
-    List<Job> getStarredJobs();
+    List<Job> getStarredJobs(String userId);
 }

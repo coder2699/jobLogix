@@ -80,4 +80,8 @@ public class Helper {
         // Calculate percentage
         return ((double) successfulJobs / jobs.size()) * 100;
     }
+    public static String getLinkForEmailVerificatiton(String emailToken) {
+        String link = "http://localhost:8080/auth/verify-email?token=" + emailToken;
+        return link;
+    }
 }

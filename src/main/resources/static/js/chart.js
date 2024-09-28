@@ -3,7 +3,7 @@ function generateChart(dynamicData) {
   const chartConfig = {
     series: [
       {
-        name: "Status",
+        name: "Count",
         data: dynamicData.data,  // Dynamic data array
       },
     ],
@@ -19,6 +19,9 @@ function generateChart(dynamicData) {
     },
     dataLabels: {
       enabled: true,
+      style: {
+        colors: ['#757575'] 
+      }
     },
     colors: ["#505fc0"],
     plotOptions: {
@@ -71,10 +74,7 @@ function generateChart(dynamicData) {
     },
     fill: {
       opacity: 0.8,
-    },
-    tooltip: {
-      theme: "dark",
-    },
+    }
   };
 
   const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);

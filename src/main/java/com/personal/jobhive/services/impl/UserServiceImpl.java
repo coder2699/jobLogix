@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.personal.jobhive.entities.User;
 import com.personal.jobhive.helpers.AppConstants;
+import com.personal.jobhive.helpers.Helper;
 import com.personal.jobhive.helpers.ResourceNotFoundException;
 import com.personal.jobhive.repositories.UserRepo;
+import com.personal.jobhive.services.EmailService;
 import com.personal.jobhive.services.UserService;
 
 @Service
@@ -21,6 +23,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -34,9 +39,12 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoleList(List.of(AppConstants.ROLE_USER));
         logger.info(user.getProvider().toString());
-
-        return userRepo.save(user);
-
+        String emailToken = UUID.randomUUID().toString();
+        user.setEmailToken(emailToken);
+        User savedUser = userRepo.save(user);
+        String emailLink = Helper.getLinkForEmailVerificatiton(emailToken);
+        emailService.sendEmail(savedUser.getEmail(), "Verify Account : JobLogix", emailLink);
+        return savedUser;
     }
 
     @Override

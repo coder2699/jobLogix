@@ -18,6 +18,9 @@ public class SecurityConfig {
 
     @Autowired
     private OAuthAuthenicationSuccessHandler handler;
+
+    @Autowired
+    private AuthFailureHandler authFailureHandler;
     
     // configuraiton of authentication providerfor spring security
     @Bean
@@ -47,6 +50,7 @@ public class SecurityConfig {
             formLogin.defaultSuccessUrl("/user/jobs");
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
+            formLogin.failureHandler(authFailureHandler);
         });
         
         httpSecurity.logout(logoutForm -> {

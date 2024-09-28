@@ -10,6 +10,10 @@ import org.springframework.security.core.Authentication;
 
 import com.personal.jobhive.services.JobService;
 import com.personal.jobhive.services.UserService;
+
+import jakarta.servlet.http.HttpSession;
+
+import com.personal.jobhive.entities.User;
 import com.personal.jobhive.helpers.Helper;
 
 @Controller
@@ -25,10 +29,12 @@ public class UserController {
 
     // user dashbaord page
     @RequestMapping(value = "/dashboard")
-    public String userDashboard(Model model) {
-        model.addAttribute("totalApplications", jobService.getAll().size());
-        model.addAttribute("starredApplications", jobService.getStarredJobs().size());
-        model.addAttribute("successRate", Helper.calculateSuccessPercentage(jobService.getAll()));
+    public String userDashboard(Model model, Authentication authentication, HttpSession session) {
+        String username = Helper.getEmailOfLoggedInUser(authentication);
+        User user = userService.getUserByEmail(username);
+        model.addAttribute("totalApplications", jobService.getAll(user.getUserId()).size());
+        model.addAttribute("starredApplications", jobService.getStarredJobs(user.getUserId()).size());
+        model.addAttribute("successRate", Helper.calculateSuccessPercentage(jobService.getAll(user.getUserId())));
         return "user/dashboard";
     }
 
