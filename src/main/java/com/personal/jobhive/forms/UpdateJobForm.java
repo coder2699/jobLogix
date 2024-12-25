@@ -35,7 +35,7 @@ public class UpdateJobForm {
     @NotBlank(message = "CV Link is required")
     private String cvLink;
 
-    @NotNull(message = "Date is required")
+    @NotNull(message = "Applied Date is required")
     private String updateAppliedDate;
     private String interviewDate;
     

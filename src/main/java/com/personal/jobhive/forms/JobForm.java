@@ -39,7 +39,7 @@ public class JobForm {
     @NotBlank(message = "CV Link is required")
     private String cvLink;
 
-    @NotNull(message = "Date is required")
+    @NotNull(message = "Applied Date is required")
     private LocalDate appliedDate;
     private LocalDate interviewDate;
     

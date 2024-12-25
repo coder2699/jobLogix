@@ -98,7 +98,7 @@ public class JobController {
         job.setPlatform(jobForm.getPlatform());
         job.setUser(user);
         job.setAppliedDate(jobForm.getAppliedDate());
-        // job.setInterviewDate(jobForm.getInterviewDate());
+        if (jobForm.getInterviewDate() != null) job.setInterviewDate(jobForm.getInterviewDate());
         job.setPicture(fileURL);
         job.setCloudinaryImagePublicId(filename);
         jobService.save(job);
@@ -215,6 +215,12 @@ public class JobController {
         LocalDate appliedDate = job.getAppliedDate();
         jobForm.setUpdateAppliedDate(appliedDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
+
+        if(job.getInterviewDate()!=null) {
+            LocalDate interviewDate = job.getInterviewDate();
+            jobForm.setInterviewDate(interviewDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        }
+
         model.addAttribute("updateJobForm", jobForm);
         model.addAttribute("jobId", jobId);
 
@@ -249,6 +255,11 @@ public class JobController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate appliedDate = LocalDate.parse(jobForm.getUpdateAppliedDate(), formatter);
         con.setAppliedDate(appliedDate);
+
+        if(jobForm.getInterviewDate()!=null) {
+            LocalDate interviewDate = LocalDate.parse(jobForm.getInterviewDate(), formatter);
+            con.setInterviewDate(interviewDate);
+        }
 
         var updateCon = jobService.update(con);
         logger.info("updated job {}", updateCon);

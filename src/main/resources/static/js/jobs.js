@@ -57,16 +57,17 @@ async function loadJobdata(id) {
         document.querySelector("#picture").src = data.picture;
         document.querySelector("#company").innerHTML = data.company;
         document.querySelector("#jobRole").innerHTML = data.jobRole;
-        document.querySelector("#location").innerHTML = data.location;
-        document.querySelector("#platform").innerHTML = 'Applied On ' + data.platform;
-        document.querySelector("#appliedDate").innerHTML = formatDate(data.appliedDate);
-        document.querySelector("#referral").innerHTML = data.referred? 'Referred By '+ data.referredBy:'Referred By None';
+        document.querySelector("#location").innerHTML = 'Location: ' + data.location;
+        document.querySelector("#platform").innerHTML = 'Applied On: ' + data.platform;
+        document.querySelector("#appliedDate").innerHTML = 'Applied Date: ' + formatDate(data.appliedDate);
+        document.querySelector("#interviewDate").innerHTML = data.interviewDate?'Interview Date: ' + formatDate(data.interviewDate):"Interview not yet scheduled";
+        document.querySelector("#referral").innerHTML = data.referred? 'Referred By: '+ data.referredBy:'Referred By: None';
         document.querySelector("#starred").innerHTML = data.starred?'🟢 Active Job Application':'🔴 Inactive Job Application';
-        document.querySelector("#currentStatus").innerHTML = data.currentStatus;
-        document.querySelector("#description").innerHTML = data.description;
-        document.querySelector("#jobLink").innerHTML = data.jobLink;
+        document.querySelector("#currentStatus").innerHTML = 'Current Status: ' + data.currentStatus;
+        document.querySelector("#description").innerHTML = 'Description: ' + data.description;
+        document.querySelector("#jobLink").innerHTML = 'Job Url: ' + data.jobLink;
         document.querySelector("#jobLink").href = data.jobLink;
-        document.querySelector("#cvLink").innerHTML = data.cvLink;
+        document.querySelector("#cvLink").innerHTML = 'CV Link: ' + data.cvLink;
         document.querySelector("#cvLink").href = data.cvLink;
         openJobModal();
     } catch (error) {
