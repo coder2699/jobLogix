@@ -1,5 +1,7 @@
 package com.personal.jobhive.controllers;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -21,6 +23,7 @@ import com.personal.jobhive.entities.Job;
 import com.personal.jobhive.entities.User;
 import com.personal.jobhive.forms.JobForm;
 import com.personal.jobhive.forms.JobSearchForm;
+import com.personal.jobhive.forms.UpdateJobForm;
 import com.personal.jobhive.helpers.AppConstants;
 import com.personal.jobhive.helpers.Helper;
 import com.personal.jobhive.helpers.Message;
@@ -196,7 +199,7 @@ public class JobController {
     @GetMapping("/view/{jobId}")
     public String updateJobFormView(@PathVariable("jobId") String jobId, Model model) {
         var job = jobService.getById(jobId);
-        JobForm jobForm = new JobForm();
+        UpdateJobForm jobForm = new UpdateJobForm();
         jobForm.setCompany(job.getCompany());
         jobForm.setStarred(job.isStarred());
         jobForm.setCurrentStatus(job.getCurrentStatus());
@@ -208,9 +211,11 @@ public class JobController {
         jobForm.setJobLink(job.getJobLink());
         jobForm.setCvLink(job.getCvLink());
         jobForm.setPlatform(job.getPlatform());
-        jobForm.setAppliedDate(job.getAppliedDate());
 
-        model.addAttribute("jobForm", jobForm);
+        LocalDate appliedDate = job.getAppliedDate();
+        jobForm.setUpdateAppliedDate(appliedDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+        model.addAttribute("updateJobForm", jobForm);
         model.addAttribute("jobId", jobId);
 
         return "user/update_job_view";
@@ -218,7 +223,7 @@ public class JobController {
 
     @RequestMapping(value = "/update/{jobId}", method = RequestMethod.POST)
     public String updateJob(@PathVariable("jobId") String jobId,
-            @Valid @ModelAttribute JobForm jobForm,
+            @Valid @ModelAttribute UpdateJobForm jobForm,
             BindingResult bindingResult,
             Model model, HttpSession session) {
 
@@ -240,7 +245,10 @@ public class JobController {
         con.setJobLink(jobForm.getJobLink());
         con.setCvLink(jobForm.getCvLink());
         con.setPlatform(jobForm.getPlatform());
-        // con.setAppliedDate(jobForm.getAppliedDate());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate appliedDate = LocalDate.parse(jobForm.getUpdateAppliedDate(), formatter);
+        con.setAppliedDate(appliedDate);
 
         var updateCon = jobService.update(con);
         logger.info("updated job {}", updateCon);

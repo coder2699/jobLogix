@@ -25,7 +25,7 @@
 
                         <h1 class="text-2xl font-semibold">Update Job</h1>
 
-                        <form action="" class="mt-8" data-th-action="@{'/user/jobs/update/' + ${jobId}}" data-th-object="${jobForm}"
+                        <form action="" class="mt-8" data-th-action="@{'/user/jobs/update/' + ${jobId}}" data-th-object="${updateJobForm}"
                             method="post" enctype="multipart/form-data">
                             <!-- company form -->
                             <div class="mb-3">
@@ -121,13 +121,13 @@
                                                 </svg>
                                             </div>
                                             <input id="datepicker-autohide" datepicker-format="yyyy-mm-dd" datepicker
-                                                datepicker-autohide data-th-field="*{appliedDate}" type="text"
+                                                datepicker-autohide data-th-field="*{updateAppliedDate}" type="text"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Select date">
                                         </div>
 
-                                        <p class="mb-3 text-red-500" data-th-if="${#fields.hasErrors('appliedDate')}"
-                                            data-th-errors="*{appliedDate}">
+                                        <p class="mb-3 text-red-500" data-th-if="${#fields.hasErrors('updateAppliedDate')}"
+                                            data-th-errors="*{updateAppliedDate}">
                                             Invalid Date
                                         </p>
                                     </div>
